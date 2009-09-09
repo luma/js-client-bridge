@@ -12,10 +12,10 @@ Little library that encapsulates a (particular) standardised way of talking betw
 
 == SYNOPSIS:
 
-=== Standard and Custom Fields ===
+=== Standard and Custom Fields
 Any fields that begin with a '_' are standard fields that will be used among all the different response types. These fields are quite often required or will have specific set behavior that the client side is expected to follow. Any fields that don't begin with '_' are custom fields and the client side can use them (or not) however they want.
 
-=== Use of JSON With Padding (JSONP) ===
+=== Use of JSON With Padding (JSONP)
 We support JSONP (see [http://bob.pythonmac.org/archives/2005/12/05/remote-json-jsonp/ Here] for an introduction to JSONP). Meaning that, rather than the standard JSON responses below:
 
 	{
@@ -35,55 +35,55 @@ A service may be required to return a response of the form:
 Whether JSONP is used for a response or not is decided by the calling client and services should support either response format.
 
 
-=== Everything's Cool Response ===
+=== Everything's Cool Response
 This is returned when a remote call succeeds, it must include the status of 'ok'. It can optionally include a message, if a message is included it should be displayed to the user.
 
 
-==== Required Fields ====
+==== Required Fields
 [_status]		String - This will always be 'ok'.
 
 
-==== Optional Fields ====
+==== Optional Fields
 [_message]		String - If sent from server-side client side should display it.
 
-==== Example ====
+==== Example
 	{
 		_status  : 'ok',
 		_message : 'a status message'
 	} 
 
 
-=== A General Error Occurred ===
+=== A General Error Occurred
 This is returned when a remote call fails with a general error, where in this case general error means we want to display feedback to the user but we want to leave any further action up to the client side. It can optionally include a message, if a message is included it should be displayed to the user.
 
 
-==== Required Fields ====
+==== Required Fields
 [_status]		String - This will always be 'error'.
 
-==== Optional Fields ====
+==== Optional Fields
 [_message]		String - If sent from server-side client side should display it.
 
-==== Example ====
+==== Example
 	{
 		_status	: 'error',
 		_message	: 'asdfasfasd'
 	}
 
-=== An Unexpected Exception Occurred ===
+=== An Unexpected Exception Occurred
 This is returned when something explodes on the server side. These errors are assumed to be unhandlable on the client side (due to the absurdly large number of possible errors). The client side should take the error info and display it to the user in a standard format. During development or testing this should include displaying all the information on the screen. What happens in production is an open question.
 
 
-==== Required Fields ====
+==== Required Fields
 [_status]			String - This will always be 'error'.
 [_type]				String - This will be the fully namespaced name of the exception.
 [_short_type]	String - This will be the short, easily readable version of _type.
 [request_uri]	String - The uri of the original request that triggered this exception.
 [parameters]	Hash   - A hash of key/value pairs representing the query string or POSTed data. If there are none, an empty hash ({}) should be used.
 
-==== Optional Fields ====
+==== Optional Fields
 [_message]		String - If sent from server-side client side should display it.
 
-==== Example ====
+==== Example
 	{
 	  _status            : "exception",
 	  _type             : "Merb::Controller::Exceptions::InternalServerError",
@@ -103,7 +103,7 @@ This is returned when something explodes on the server side. These errors are as
 	  ]
 	}
 
-=== Validation for the Request Failed ===
+=== Validation for the Request Failed
 This response is returned when server side validation of an object failed, it should include enough information to display dynamic validation messages and highlight/animate input fields. It is suggested that to make this work seamlessly there must be some way to map html field ids to attribute names in a way that won't clash. One way that is quite efficient is to use form element ids of the form:
   '''short_object_type-object_id-attribute_name'''
 
@@ -114,7 +114,7 @@ For example, if we were calling a remote service to update an Offer with the id 
   '''offer-1-bid_amount'''
 
 
-==== Example ====
+==== Example
 The advantage of this scheme is that dynamic validation UI bits can be applied to a client side form using something like the following (this is pseudo code, it's untested):
 
 	var response = get_response_from_server_side();
@@ -124,18 +124,18 @@ The advantage of this scheme is that dynamic validation UI bits can be applied t
 	  $('#' + field_id).highlight().shake().addClass('error').after("<strong class='form-error'>" + errors.join(', ') + "</strong>");
 	});
 
-==== Required Fields ====
+==== Required Fields
 [_status]			String - This will always be 'exception'.
 [_type]				String - This will be the fully namespaced name of the exception.
 [_short_type]	String - This will be the short, easily readable version of _type.
 [validation]	Has - The keys of the hash are the field name on which the error occured. these should has no spaces. The values are arrays of strings, where each string is an error message.
 
 
-=== Optional Fields ===
+=== Optional Fields
 [_message]		String - If sent from server-side client side should display it.
 [id]					String - The server side id of the object.
 
-=== Example ===
+=== Example
 	{
 	 "_status"          => "validation",
 	 "_type"             => "Twimmy::Test::TestDO",

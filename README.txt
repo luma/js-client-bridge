@@ -18,22 +18,18 @@ Any fields that begin with a '_' are standard fields that will be used among all
 === Use of JSON With Padding (JSONP) ===
 We support JSONP (see [http://bob.pythonmac.org/archives/2005/12/05/remote-json-jsonp/ Here] for an introduction to JSONP). Meaning that, rather than the standard JSON responses below:
 
-<source lang="javascript">
-{
-	_status  : 'ok',
-	_message : 'a status message'
-} 
-</source>
+	{
+		_status  : 'ok',
+		_message : 'a status message'
+	} 
 
 
 A service may be required to return a response of the form:
 
-<source lang="javascript">
-jsonp_identifier_12321({
-	_status  : 'ok',
-	_message : 'a status message'
-} )
-</source>
+	jsonp_identifier_12321({
+		_status  : 'ok',
+		_message : 'a status message'
+	} )
 
 
 Whether JSONP is used for a response or not is decided by the calling client and services should support either response format.
@@ -256,7 +252,7 @@ jQuery.each(response.validation, function(field_name, errors) {
                     "subject" :  ["Subject must not be blank", "Subject must be between 30 and 155 characters long"],
                     "id"          :  ["Id must not be blank"]
    },
-}                                                        
+} 
 </source>
 
 == REQUIREMENTS:

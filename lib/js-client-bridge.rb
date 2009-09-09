@@ -8,6 +8,7 @@ end
 require 'rubygems'
 require 'json'
 require "extlib"
+require 'hoe'
 
 require 'js-client-bridge/responses'
 require 'js-client-bridge/extensions/datamapper_errors'

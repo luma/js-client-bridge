@@ -1,7 +1,6 @@
 History.txt
 Manifest.txt
-PostInstall.txt
-README.rdoc
+README.txt
 Rakefile
 lib/js-client-bridge.rb
 lib/js-client-bridge/responses.rb

@@ -40,34 +40,17 @@ This is returned when a remote call succeeds, it must include the status of 'ok'
 
 
 ==== Required Fields ====
-{| border="1" cellpadding="5" cellspacing="0"
-|-
-|Name || Type || Description
-|-
-|'''_status'''
-|String
-|This will always be 'ok'.
-|}
+[_status]		String - This will always be 'ok'.
 
 
 ==== Optional Fields ====
-{| border="1" cellpadding="5" cellspacing="0"
-|-
-|Name || Type || Description
-|-
-|'''_message'''
-|String
-|If sent from server-side client side should display it.
-|}
-
+[_message]		String - If sent from server-side client side should display it.
 
 ==== Example ====
-<source lang="javascript">
-{
-	_status  : 'ok',
-	_message : 'a status message'
-} 
-</source>
+	{
+		_status  : 'ok',
+		_message : 'a status message'
+	} 
 
 
 === A General Error Occurred ===
@@ -75,106 +58,50 @@ This is returned when a remote call fails with a general error, where in this ca
 
 
 ==== Required Fields ====
-{| border="1" cellpadding="5" cellspacing="0"
-|-
-|Name || Type || Description
-|-
-|'''_status'''
-|String
-|This will always be 'error'.
-|}
-
+[_status]		String - This will always be 'error'.
 
 ==== Optional Fields ====
-{| border="1" cellpadding="5" cellspacing="0"
-|-
-|Name || Type || Description
-|-
-|'''_message'''
-|String
-|If sent from server-side client side should display it.
-|}
-
+[_message]		String - If sent from server-side client side should display it.
 
 ==== Example ====
-<source lang="javascript">
-{
-	_status	: 'error',
-	_message	: 'asdfasfasd'
-}
-</source>
-
+	{
+		_status	: 'error',
+		_message	: 'asdfasfasd'
+	}
 
 === An Unexpected Exception Occurred ===
 This is returned when something explodes on the server side. These errors are assumed to be unhandlable on the client side (due to the absurdly large number of possible errors). The client side should take the error info and display it to the user in a standard format. During development or testing this should include displaying all the information on the screen. What happens in production is an open question.
 
 
 ==== Required Fields ====
-
-{| border="1" cellpadding="5" cellspacing="0"
-|-
-|Name || Type || Description
-|-
-|'''_status'''
-|String
-|This will always be 'exception'.
-|-
-|'''_type'''
-|String
-|This will be the fully namespaced name of the exception.
-|-
-|'''_short_type'''
-|String
-|This will be the short, easily readable version of _type.
-|-
-|'''request_uri'''
-|String
-|The uri of the original request that triggered this exception.
-|-
-|'''parameters'''
-|Hash
-|A hash of key/value pairs representing the query string or POSTed data. If there are none, an empty hash ({}) should be used.
-|-
-|}
-
+[_status]			String - This will always be 'error'.
+[_type]				String - This will be the fully namespaced name of the exception.
+[_short_type]	String - This will be the short, easily readable version of _type.
+[request_uri]	String - The uri of the original request that triggered this exception.
+[parameters]	Hash   - A hash of key/value pairs representing the query string or POSTed data. If there are none, an empty hash ({}) should be used.
 
 ==== Optional Fields ====
-{| border="1" cellpadding="5" cellspacing="0"
-|-
-|Name || Type || Description
-|-
-|'''_message'''
-|String
-|If sent from server-side client side should display it.
-|}
-
+[_message]		String - If sent from server-side client side should display it.
 
 ==== Example ====
-<source lang="javascript">
-{
-  _status            : "exception",
-  _type             : "Merb::Controller::Exceptions::InternalServerError",
-  _short_type  : "InternalServerError",
-  request_uri   : '/asdf,
-  parameters    : {name : value, name : value, name : value},
-  exceptions    : [
-    {
-      name     : 'Twimmy::Exceptions::ServerError',
-      message  : 'A awful error occured',
-      backtrace : [
-        "file:line",
-        "file:line",
-        "file:line",
-        "file:line"
-      ]
-  ]
-}
-</source>
-
-
-==== Open Questions ====
-* How should exceptions be handled in production
-
+	{
+	  _status            : "exception",
+	  _type             : "Merb::Controller::Exceptions::InternalServerError",
+	  _short_type  : "InternalServerError",
+	  request_uri   : '/asdf,
+	  parameters    : {name : value, name : value, name : value},
+	  exceptions    : [
+	    {
+	      name     : 'Twimmy::Exceptions::ServerError',
+	      message  : 'A awful error occured',
+	      backtrace : [
+	        "file:line",
+	        "file:line",
+	        "file:line",
+	        "file:line"
+	      ]
+	  ]
+	}
 
 === Validation for the Request Failed ===
 This response is returned when server side validation of an object failed, it should include enough information to display dynamic validation messages and highlight/animate input fields. It is suggested that to make this work seamlessly there must be some way to map html field ids to attribute names in a way that won't clash. One way that is quite efficient is to use form element ids of the form:
@@ -190,70 +117,37 @@ For example, if we were calling a remote service to update an Offer with the id 
 ==== Example ====
 The advantage of this scheme is that dynamic validation UI bits can be applied to a client side form using something like the following (this is pseudo code, it's untested):
 
-<source lang="javascript">
-var response = get_response_from_server_side();
+	var response = get_response_from_server_side();
 
-jQuery.each(response.validation, function(field_name, errors) {
-  var field_id = [response._short_type, response.id, field_name].join('-');
-  $('#' + field_id).highlight().shake().addClass('error').after("<strong class='form-error'>" + errors.join(', ') + "</strong>");
-});
-</source>
+	jQuery.each(response.validation, function(field_name, errors) {
+	  var field_id = [response._short_type, response.id, field_name].join('-');
+	  $('#' + field_id).highlight().shake().addClass('error').after("<strong class='form-error'>" + errors.join(', ') + "</strong>");
+	});
 
 ==== Required Fields ====
-
-{| border="1" cellpadding="5" cellspacing="0"
-|-
-|Name || Type || Description
-|-
-|'''_status'''
-|String
-|This will always be 'exception'.
-|-
-|'''_type'''
-|String
-|This will be the fully namespaced name of the exception.
-|-
-|'''_short_type'''
-|String
-|This will be the short, easily readable version of _type.
-|-
-|'''validation'''
-|Hash
-|The keys of the hash are the field name on which the error occured. these should has no spaces. The values are arrays of strings, where each string is an error message.
-|-
-|}
+[_status]			String - This will always be 'exception'.
+[_type]				String - This will be the fully namespaced name of the exception.
+[_short_type]	String - This will be the short, easily readable version of _type.
+[validation]	Has - The keys of the hash are the field name on which the error occured. these should has no spaces. The values are arrays of strings, where each string is an error message.
 
 
 === Optional Fields ===
-{| border="1" cellpadding="5" cellspacing="0"
-|-
-|Name || Type || Description
-|-
-|'''_message'''
-|String
-|If sent from server-side client side should display it.
-|-
-|'''id'''
-|String
-|The server side id of the object.
-|}
-
+[_message]		String - If sent from server-side client side should display it.
+[id]					String - The server side id of the object.
 
 === Example ===
-<source lang="javascript">
-{
- "_status"          => "validation",
- "_type"             => "Twimmy::Test::TestDO",
- "_short_type"  => "TestDO",
- "_message"     => "Sorry, we couldn't save your TestDO",
- "action"            => "create",
-  "validation"  : {
-                    "body"     :  ["Body must not be blank"],
-                    "subject" :  ["Subject must not be blank", "Subject must be between 30 and 155 characters long"],
-                    "id"          :  ["Id must not be blank"]
-   },
-} 
-</source>
+	{
+	 "_status"          => "validation",
+	 "_type"             => "Twimmy::Test::TestDO",
+	 "_short_type"  => "TestDO",
+	 "_message"     => "Sorry, we couldn't save your TestDO",
+	 "action"            => "create",
+	  "validation"  : {
+	                    "body"     :  ["Body must not be blank"],
+	                    "subject" :  ["Subject must not be blank", "Subject must be between 30 and 155 characters long"],
+	                    "id"          :  ["Id must not be blank"]
+	   },
+	} 
 
 == REQUIREMENTS:
 

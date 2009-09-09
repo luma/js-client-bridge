@@ -155,9 +155,10 @@ The advantage of this scheme is that dynamic validation UI bits can be applied t
 * extlib gem
 
 == INSTALL:
+The first line add's github as a source for your local rubygems.
 
-* FIX (sudo gem install, anything else)
-* git clone
+	sudo gem sources -a http://gems.github.com
+	sudo gem install luma-js-client-bridge
 
 == LICENSE:
 

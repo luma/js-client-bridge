@@ -5,11 +5,11 @@ Gem::Specification.new do |s|
   s.name        = "js-client-bridge"
   s.version     = JsClientBridge::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = []
-  s.email       = []
+  s.authors     = ['Rolly Fordham']
+  s.email       = ['rolly@luma.co.nz']
   s.homepage    = "http://rubygems.org/gems/js-client-bridge"
-  s.summary     = "TODO: Write a gem summary"
-  s.description = "TODO: Write a gem description"
+  s.summary     = "Standardised way of talking between a service and javascript"
+  s.description = "Little library that encapsulates a (particular) standardised way of talking between a service and javascript. Probably not the best way of doing things, but it's been handy in a pinch."
 
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "js-client-bridge"

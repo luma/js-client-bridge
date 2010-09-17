@@ -20,7 +20,6 @@ module JsClientBridge #:nodoc:
         # Generate our response hash and add the exceptions parameter
         response =  if options.include?(:message)
                       options.merge( validation_errors_to_hash(obj, options.delete(:message)) )
-                      
                     else
                       options.merge( validation_errors_to_hash(obj) )
                     end
@@ -35,7 +34,7 @@ module JsClientBridge #:nodoc:
     
         validation = {
           :_status       => 'validation',
-          :_type        => data_object.class,
+          :_type        => data_object.class.to_s,
           :_short_type  => short_type,
           :_message      => message,
           :validation   => data_object.errors.to_hash,

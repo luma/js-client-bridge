@@ -41,7 +41,7 @@ module JsClientBridge #:nodoc:
           :validation   => data_object.errors.to_hash,
         }
     
-        validation[:id] = data_object.id.to_s unless data_object.new_record?
+        validation[:id] = data_object.id.to_s unless data_object.new?
     
         validation
       end

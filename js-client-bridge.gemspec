@@ -14,13 +14,21 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "js-client-bridge"
 
-  s.add_dependency "json", "~> 1.4.6"
+  s.add_dependency "json_pure", "~> 1.4.6"
 
   s.add_development_dependency "bundler", ">= 1.0.0"
-  s.add_development_dependency "rspec", "~> 1.3.0"
+  s.add_development_dependency "rspec", "~> 2.0.0"
   s.add_development_dependency "rcov", "~> 0.9.8"
   s.add_development_dependency "mocha", "~> 0.9.8"
-  s.add_development_dependency "dm-core", "~> 1.0.2"
+
+  DM_VERSION = "~> 1.0.2"
+  s.add_development_dependency "dm-core",           DM_VERSION
+  s.add_development_dependency 'dm-aggregates',     DM_VERSION
+  s.add_development_dependency 'dm-migrations',     DM_VERSION
+  s.add_development_dependency 'dm-timestamps',     DM_VERSION
+  s.add_development_dependency 'dm-validations',    DM_VERSION
+  s.add_development_dependency 'dm-types',          DM_VERSION
+  s.add_development_dependency 'dm-sqlite-adapter', DM_VERSION
 
   if RUBY_VERSION > '1.9.0'
     s.add_development_dependency "ruby-debug19", "~> 0.11.6"

@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "json_pure", "~> 1.4.6"
 
-  s.add_development_dependency "bundler", ">= 1.0.0"
+  s.add_development_dependency "bundler", ">= 1.0.3"
   s.add_development_dependency "rspec", "~> 2.0.0"
   s.add_development_dependency "rcov", "~> 0.9.8"
   s.add_development_dependency "mocha", "~> 0.9.8"
@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
     s.add_development_dependency "ruby-debug", "~> 0.10.3"
   end
 
-  s.files        = `git ls-files`.split("\n")
-  s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
+  s.files        = [".rspec", "Gemfile", "Gemfile.lock", "README.rdoc", "Rakefile", "js-client-bridge.gemspec", "lib/js-client-bridge.rb", "lib/js-client-bridge/responses.rb", "lib/js-client-bridge/responses/error.rb", "lib/js-client-bridge/responses/exception.rb", "lib/js-client-bridge/responses/ok.rb", "lib/js-client-bridge/responses/validation.rb", "lib/js-client-bridge/version.rb", "spec/error_responses_spec.rb", "spec/exception_responses_spec.rb", "spec/ok_responses_spec.rb", "spec/rcov.opts", "spec/spec.opts", "spec/spec_helper.rb", "spec/validation_responses_spec.rb", "tasks/rspec.rake"] #`git ls-files`.split("\n")
+  # s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
   s.require_path = 'lib'
 end

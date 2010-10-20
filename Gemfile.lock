@@ -1,13 +1,13 @@
 PATH
   remote: .
   specs:
-    js-client-bridge (0.1.2)
+    js-client-bridge (0.1.4)
       json_pure (~> 1.4.6)
 
 GEM
   remote: http://rubygems.org/
   specs:
-    addressable (2.2.1)
+    addressable (2.2.2)
     archive-tar-minitar (0.5.2)
     columnize (0.3.1)
     data_objects (0.10.2)
@@ -47,16 +47,16 @@ GEM
       rake
     rake (0.8.7)
     rcov (0.9.9)
-    rspec (2.0.0)
-      rspec-core (= 2.0.0)
-      rspec-expectations (= 2.0.0)
-      rspec-mocks (= 2.0.0)
-    rspec-core (2.0.0)
-    rspec-expectations (2.0.0)
+    rspec (2.0.1)
+      rspec-core (~> 2.0.1)
+      rspec-expectations (~> 2.0.1)
+      rspec-mocks (~> 2.0.1)
+    rspec-core (2.0.1)
+    rspec-expectations (2.0.1)
       diff-lcs (>= 1.1.2)
-    rspec-mocks (2.0.0)
-      rspec-core (= 2.0.0)
-      rspec-expectations (= 2.0.0)
+    rspec-mocks (2.0.1)
+      rspec-core (~> 2.0.1)
+      rspec-expectations (~> 2.0.1)
     ruby-debug-base19 (0.11.24)
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
@@ -74,7 +74,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (>= 1.0.0)
+  bundler (>= 1.0.3)
   dm-aggregates (~> 1.0.2)
   dm-core (~> 1.0.2)
   dm-migrations (~> 1.0.2)

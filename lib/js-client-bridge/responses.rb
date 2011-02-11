@@ -15,7 +15,7 @@ module JsClientBridge #:nodoc:
       def respond_with(type, args)
         unless args.blank?
           options = args.last.is_a?(Hash) ? args.pop.dup : {}
-          options[:_message] = args.shift.dup if args.first.is_a?(String)
+          options['_message'] = args.shift.dup if args.first.is_a?(String)
         else
           options = {}
         end
@@ -26,7 +26,7 @@ module JsClientBridge #:nodoc:
           formatting[para] = options.delete(para) if options.include?(para)
         end
         
-        [options.merge({ :_status => type.to_s }), formatting]
+        [options.merge({ '_status' => type.to_s }), formatting]
       end
       
       def format_response(response, formatting_options = {})

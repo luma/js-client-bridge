@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    js-client-bridge (0.1.4)
+    js-client-bridge (0.1.5)
       json_pure (~> 1.4.6)
 
 GEM
@@ -83,7 +83,6 @@ DEPENDENCIES
   dm-types (~> 1.0.2)
   dm-validations (~> 1.0.2)
   js-client-bridge!
-  json_pure (~> 1.4.6)
   mocha (~> 0.9.8)
   rcov (~> 0.9.8)
   rspec (~> 2.0.0)

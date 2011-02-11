@@ -32,9 +32,9 @@ module JsClientBridge #:nodoc:
       def format_response(response, formatting_options = {})
         # Handle JSONP responses
         if formatting_options[:jsonp].blank?
-          '(' + JSON.generate(response) + ' )'
+          JSON.generate(response)
         else
-          "(#{formatting_options[:jsonp]}(#{JSON.generate(response)}))"
+          "#{formatting_options[:jsonp]}(#{JSON.generate(response)})"
         end
       end
     end
